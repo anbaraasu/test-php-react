@@ -18,7 +18,7 @@ node_modules
 **/.pnp
 **/.pnp.js
 **/.pnp.cjs
-**/*.pnp.js
+**/*.pnp.jscd
 **/*.pnp.cjs
 **/.cache/
 **/.cache
@@ -28,3 +28,4 @@ node_modules
 **/*.log
 **/*.log.*
 
+**/*lock.json
