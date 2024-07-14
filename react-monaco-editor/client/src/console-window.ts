@@ -3,7 +3,7 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 import { Window, Severity } from 'vscode/services';
-import * as vscode from '../../node_modules/vscode';
+import * as vscode from 'vscode';
 
 export class ConsoleWindow implements Window {
     protected readonly channels = new Map<string, vscode.OutputChannel>();

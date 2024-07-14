@@ -9,7 +9,12 @@ REM Install React dependencies
 
 if not exist %projectdir%\react-monaco-editor\node_modules (
     echo Installing React dependencies...
+    call npm cache clean --force
     call npm install
+    call npm run build --workspace vscode-ws-jsonrpc
+
+    if %errorlevel% neq 0 goto finalline
+    call npm run build --workspace client
 )else (
     REM check any command line parameters are passed 
     echo Building React projects...
@@ -24,17 +29,17 @@ if not exist %projectdir%\react-monaco-editor\node_modules (
         if %errorlevel% neq 0 goto finalline
         call npm run build --workspace client
     )
-       if "%1" == "all" (    
-        
-        call npm run build --workspace vscode-ws-jsonrpc
+)
 
-        if %errorlevel% neq 0 goto finalline
-        call npm run build --workspace client
-    )
+if "%1" == "all" (        
+    call npm run build --workspace vscode-ws-jsonrpc
+
+    if %errorlevel% neq 0 goto finalline
+    call npm run build --workspace client
 )
 
 if %errorlevel% neq 0 goto finalline
-call npm run build --workspace monaco-editor
+call npm run build --workspace my-monaco-editor
 if %errorlevel% neq 0 goto finalline
 REM remove numbers in file names in build folder
 
@@ -42,7 +47,7 @@ REM remove numbers in file names in build folder
 REM Copy the React build to PHP public directory
 echo Copying React build to PHP project public directory...
 rmdir /S /Q ..\php-project\public\static
-xcopy /E /I /Y monaco-editor\build\static\* ..\php-project\public\static
+xcopy /E /I /Y my-monaco-editor\build\static\* ..\php-project\public\static
 
 REM Change to PHP project directory
 cd %projectdir%\php-project
@@ -72,8 +77,9 @@ if errorlevel 1 (
     echo "http://localhost:8010 is already launched"
 )
 
-cd  %projectdir%
+
 
 echo Done!
 :finalline
+cd  %projectdir%
 pause

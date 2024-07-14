@@ -1,5 +1,5 @@
 {
-  "name": "my-react-component",
+  "name": "my-monaco-editor",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -30,7 +30,7 @@
   "workspaces": [
     "client",
     "vscode-ws-jsonrpc",
-    "monaco-editor"
+    "my-monaco-editor"
   ],
   "scripts": {
     "clean": "npx shx rm -fr dist tsconfig.tsbuildinfo",

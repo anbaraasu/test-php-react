@@ -3,27 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@codingame/monaco-vscode-api": "^1.69.13",
-    "@monaco-editor/react": "^4.3.1",
-    "monaco-editor-workers": "0.34.2",
-    "monaco-languageclient": "../client",
-    "normalize-url": "~8.0.0",
-    "react": "~18.2.0",
-    "react-dom": "~18.2.0",
-    "react-scripts": "5.0.1",
-    "vscode-ws-jsonrpc": "../vscode-ws-jsonrpc"
+    "vscode-ws-jsonrpc": "^2.0.1"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.16.7",
-    "@types/react": "~18.0.25",
-    "@types/react-dom": "~18.0.9",
-    "customize-cra": "^1.0.0",
-    "react-app-rewired": "^2.2.1",
+    "@emotion/styled": "^11.11.5",
+    "@types/node": "~16.18.3",
+    "@types/vscode": "~1.69.1",
+    "@typescript-eslint/eslint-plugin": "~5.45.0",
+    "@typescript-eslint/parser": "~5.45.0",
+    "editorconfig": "~1.0.1",
+    "eslint": "~8.28.0",
+    "eslint-config-standard": "~17.0.0",
+    "eslint-plugin-header": "~3.1.1",
+    "eslint-plugin-import": "~2.26.0",
+    "eslint-plugin-promise": "~6.1.1",
+    "eslint-plugin-unused-imports": "~2.0.0",
+    "path-browserify": "~1.0.1",
+    "react-icons": "^5.2.1",
     "shx": "~0.3.4",
     "tslib": "2.4.1",
     "typescript": "4.8.4",
-    "vscode-jsonrpc": "8.0.2",
-    "vscode-languageclient": "8.0.2"
+    "vite": "3.2.4"
+  },
+  "resolutions": {
+    "vscode-languageserver-types": "3.17.2"
+  },
+  "engines": {
+    "node": ">=16.11.0",
+    "npm": ">=8.0.0"
   },
   "volta": {
     "node": "16.18.1",
@@ -32,12 +39,12 @@
   "workspaces": [
     "./client",
     "./vscode-ws-jsonrpc",
-    "./monaco-editor"
+    "./my-monaco-editor"
   ],
   "scripts": {
     "clean": "npx shx rm -fr dist tsconfig.tsbuildinfo",
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build --workspace monaco-editor",
+    "build": "react-app-rewired build --workspace my-monaco-editor",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
     "copy:monacoworkers": "shx mkdir -p dist && shx cp -r ../node_modules/monaco-editor-workers/dist/workers/editorWorker* ./dist",
