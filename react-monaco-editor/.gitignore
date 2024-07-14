@@ -1,8 +1,7 @@
 # list all the git ignore files in the project - react, php, node, etc.
 
-**node_modules**/**
+node_modules/**
 **/node_modules/**
-**/**node_modules**/**
 **/build
 **/dist
 **/.idea

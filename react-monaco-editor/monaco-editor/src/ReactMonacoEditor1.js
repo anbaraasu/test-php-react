@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 
-const MyComponent = ({ initialValue, onValueChange }) => {
+const MonacoEditor = ({ initialValue, onValueChange }) => {
   const [value, setValue] = useState(initialValue);
 
   useEffect(() => {
@@ -22,4 +22,4 @@ const MyComponent = ({ initialValue, onValueChange }) => {
   );
 };
 
-export default MyComponent;
+export default MonacoEditor;
