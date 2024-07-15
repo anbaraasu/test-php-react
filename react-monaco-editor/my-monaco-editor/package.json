@@ -2,6 +2,7 @@
   "name": "my-monaco-editor",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@monaco-editor/react": "^4.3.1",
     "monaco-editor-workers": "0.34.2",
@@ -33,13 +34,13 @@
     "my-monaco-editor"
   ],
   "scripts": {
-    "clean": "npx shx rm -fr dist tsconfig.tsbuildinfo",
+    "clean": "npx shx rm -fr lib dist build tsconfig.tsbuildinfo",
     "compile": "tsc",
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build && npm run copy:monacoworkers",
+    "build": "npm run clean && webpack --mode production && npm run copy:monacoworkers",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
-    "copy:monacoworkers": "shx cp -r ../node_modules/monaco-editor-workers/dist/workers/editorWorker* ./build/static/js/",
+    "copy:monacoworkers": "shx cp -r ../node_modules/monaco-editor-workers/dist/workers/editorWorker* ./lib/",
     "build:msg": "echo Building MonacoEditor component:"
   },
   "eslintConfig": {

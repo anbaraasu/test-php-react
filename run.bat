@@ -47,7 +47,9 @@ REM remove numbers in file names in build folder
 REM Copy the React build to PHP public directory
 echo Copying React build to PHP project public directory...
 rmdir /S /Q ..\php-project\public\static
-xcopy /E /I /Y my-monaco-editor\build\static\* ..\php-project\public\static
+REM xcopy /E /I /Y my-monaco-editor\build\static\* ..\php-project\public\static
+
+xcopy /E /I /Y my-monaco-editor\dist\* ..\php-project\public\dist
 
 REM Change to PHP project directory
 cd %projectdir%\php-project
@@ -58,7 +60,7 @@ tasklist /FI "IMAGENAME eq cmd.exe" /FO TABLE /NH /V 2>NUL | find /I /N "nodemon
 
 
 if errorlevel 1 (
-    start nodemon --watch php-project --ext php --exec "php -S localhost:8010 -t public"
+    start nodemon --watch public --ext php --exec "php -S localhost:8010 -t public"
 ) else (
     echo "Nodemon is already running"
 )
@@ -83,3 +85,7 @@ echo Done!
 :finalline
 cd  %projectdir%
 pause
+
+REM Step2: Separting React Component - Next version - not working
+
+REM Get-ChildItem -Path .\monaco-language-java\ -Recurse | Where-Object { $_.FullName -notmatch 'dist' -and $_.FullName -notmatch 'lib' -and  $_.FullName -notmatch 'build' -and $_.FullName -notmatch 'node_modules' -and  $_.FullName -notmatch '.vscode' -and $_.FullName -notmatch '.git' } | Compress-Archive -DestinationPath monaco-language-java.zip

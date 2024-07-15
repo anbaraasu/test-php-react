@@ -11,22 +11,26 @@ const __dirname = dirname(__filename);
 const projectRoot = resolve(__dirname, '..');
 
 const config = {
-    entry: resolve(__dirname, 'src', 'client.ts'),
+    entry: resolve(__dirname, 'src', 'index.js'),
     module: {
-        rules: [{
+        rules: [
+            {
+              test: /\.jsx?$/, // A regexp that catches .js and .jsx files              
+              exclude: [/node_modules/, /vscode-jsonrpc/, /vscode-languageclient/, /vscode-languageserver-protocol/],
+              use: {
+                loader: 'babel-loader',
+                options: {
+                  presets: ['@babel/preset-env', '@babel/preset-react'] // Use these presets for transpiling
+                }
+              }
+            },
+            {
             test: /\.css$/,
             use: ['style-loader', 'css-loader']
         },
         {
             test: /\.ts?$/,
             use: ['ts-loader']
-        },
-        {
-            test: /\.js$/,
-            enforce: 'pre',
-            use: ['source-map-loader'],
-            // These modules seems to have broken sourcemaps, exclude them to prevent an error flood in the logs
-            exclude: [/vscode-jsonrpc/, /vscode-languageclient/, /vscode-languageserver-protocol/]
         }]
     },
     experiments: {
@@ -39,7 +43,7 @@ const config = {
     },
     target: 'web',
     resolve: {
-        extensions: ['.ts', '.js', '.json', '.ttf'],
+        extensions: ['.ts', '.js', '.json', '.ttf','.tsx','.jsx'],
         fallback: {
             path: resolve(projectRoot, 'node_modules', 'path-browserify')
         }
